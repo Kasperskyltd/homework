@@ -1,0 +1,33 @@
+$color-base: 10px;
+
+@mixin border-radius($radius: 4) {
+
+    // sprawdzamy czy liczba nie posiada jednostki
+    @if unitless($radius) {
+        $radius: $radius + px;
+    }
+
+    border-radius: $radius;
+
+}
+
+div {
+    width: 200px;
+    height: 200px;
+    border: 1px solid red;
+    @if mixin-exists(border-radius) {
+        @include border-radius();
+    }
+}
+
+.color {
+    @if variable-exists(color-base) {
+
+        @if type-of($color-base) == 'color' {
+            
+            background-color: $color-base;
+        
+        }
+
+    }
+}
